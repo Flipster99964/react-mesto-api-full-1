@@ -26,7 +26,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDeleteClick 
   }
 
   return (
-    <li className='gallery__card'>
+    <li className='gallery__card' key={card._id}>
       <img
         onClick={handleClick}
         src={card.link}
