@@ -115,9 +115,6 @@ export class Api {
       return this.deleteLike(cardId);
     }
   }
-  updateToken() {
-    this.token = `Bearer ${localStorage.getItem('jwt')}`;
-  }
 }
 
 export const api = new Api({

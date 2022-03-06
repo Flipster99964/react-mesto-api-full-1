@@ -213,7 +213,7 @@ export default function App() {
         .then(resData => {
           const [userData, cardList] = resData;
           setCurrentUser(userData.data);
-          setCards(cardList.data);
+          setCards(cardList.data.reverse());
         })
         .catch((err) => {
           console.log(err);
