@@ -115,7 +115,7 @@ export default function App() {
     //check out whether there's my like on the card already
     const isLiked = card.likes.some((i) => i === currentUser._id);
     //send a request to API and get new card data
-    api.changeLikeCardStatus(card.data._id, !isLiked)
+    api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         const newCards = cards.map((c) => c._id === card._id ? newCard : c);
         setCards(newCards);
