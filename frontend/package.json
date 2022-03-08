@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "scp -r ./build/* sergeyladorski@84.201.130.143:/home/sergeyladorski/react-mesto"
+    "deploy": "scp -r ./build/* sergeyladorski@84.201.132.131:/home/sergeyladorski/mesto-frontend"
   },
   "eslintConfig": {
     "extends": [
