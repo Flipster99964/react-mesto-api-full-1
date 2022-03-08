@@ -1,8 +1,6 @@
 export class Api {
   constructor(config) {
     this.source = config.source
-    this.cohort = config.cohort
-    this.token = config.token
   }
   //checking if the server's responce is ok
   _checkResponse(res) {
@@ -12,22 +10,22 @@ export class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
   //get user info
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this.source}/users/me`, {
       method: 'GET',
       headers: {
-        authorization: this.token,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
     })
       .then(res => this._checkResponse(res))
   }
   //update user info
-  setUserInfo({ name, about }) {
+  setUserInfo({ name, about }, token) {
     return fetch(`${this.source}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this.token,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -38,11 +36,11 @@ export class Api {
       .then(res => this._checkResponse(res))
   }
   //update user avatar
-  setUserAvatar(avatar) {
+  setUserAvatar(avatar, token) {
     return fetch(`${this.source}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        authorization: this.token,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -52,22 +50,22 @@ export class Api {
       .then(res => this._checkResponse(res))
   }
   //get cards
-  getCards() {
+  getCards(token) {
     return fetch(`${this.source}/cards`, {
       method: 'GET',
       headers: {
-        authorization: this.token,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
     })
       .then(res => this._checkResponse(res))
   }
   //add a new card
-  postCard({ name: place, link: source }) {
+  postCard({ name: place, link: source }, token) {
     return fetch(`${this.source}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this.token,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -78,46 +76,45 @@ export class Api {
       .then(res => this._checkResponse(res))
   }
   //delete selected card
-  deleteCard(cardId) {
+  deleteCard(cardId, token) {
     return fetch(`${this.source}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this.token,
+        Authorization: `Bearer ${token}`,
       }
     })
       .then(res => this._checkResponse(res))
   }
   //like selected card
-  setLike(cardId) {
+  setLike(cardId, token) {
     return fetch(`${this.source}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
-        authorization: this.token,
+        Authorization: `Bearer ${token}`,
       }
     })
       .then(res => this._checkResponse(res))
   }
   //remove like on selected card
-  deleteLike(cardId) {
+  deleteLike(cardId, token) {
     return fetch(`${this.source}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
-        authorization: this.token,
+        Authorization: `Bearer ${token}`,
       }
     })
       .then(res => this._checkResponse(res))
   }
   //check out whether current card is liked, then put or delete it
-  changeLikeCardStatus(cardId, isLiked) {
+  changeLikeCardStatus(cardId, isLiked, token) {
     if (isLiked) {
-      return this.setLike(cardId);
+      return this.setLike(cardId, token);
     } else {
-      return this.deleteLike(cardId);
+      return this.deleteLike(cardId, token);
     }
   }
 }
 
 export const api = new Api({
-  source: 'http://localhost:3001',
-  token: `Bearer ${localStorage.getItem('jwt')}`,
+  source: 'https://api.sergeyladorski.nomoredomains.xyz',
 })

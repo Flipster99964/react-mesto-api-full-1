@@ -13,7 +13,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
 const NotFoundError = require('./middlewares/errors/not-found-error');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 const app = express();
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  Origin: 'https://sergeyladorski.nomoredomains.work',
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,6 +34,12 @@ app.use(helmet());
 app.use(limiter);
 app.use(requestLogger);
 
+// crash test
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 // create user route
 app.post('/signup', celebrate({
   body: Joi.object().keys({

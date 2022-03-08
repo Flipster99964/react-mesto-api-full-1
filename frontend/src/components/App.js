@@ -32,6 +32,9 @@ export default function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
+  // jwt
+  const token = localStorage.getItem('jwt');
+
   function handleMenuClick() {
     setIsMenuActive(!isMenuActive);
   }
@@ -57,7 +60,7 @@ export default function App() {
   //update user info
   function handleUpdateUser(userInfo) {
     setIsLoading(true);
-    api.setUserInfo(userInfo)
+    api.setUserInfo(userInfo, token)
       .then((newUserInfo) => {
         setCurrentUser(newUserInfo.data);
         closeAllPopups();
@@ -72,7 +75,7 @@ export default function App() {
   //update user avatar
   function handleUpdateAvatar(avatar) {
     setIsLoading(true);
-    api.setUserAvatar(avatar)
+    api.setUserAvatar(avatar, token)
       .then((newAvatar) => {
         setCurrentUser(newAvatar.data);
         closeAllPopups();
@@ -87,7 +90,7 @@ export default function App() {
   //add a new place
   function handleAddPlaceSubmit(card) {
     setIsLoading(true);
-    api.postCard(card)
+    api.postCard(card, token)
       .then((newCard) => {
         setCards([newCard.data, ...cards]);
         closeAllPopups();
@@ -115,7 +118,7 @@ export default function App() {
     //check out whether there's my like on the card already
     const isLiked = card.likes.some((i) => i === currentUser._id);
     //send a request to API and get new card data
-    api.changeLikeCardStatus(card._id, !isLiked)
+    api.changeLikeCardStatus(card._id, !isLiked, token)
       .then((newCard) => {
         const newCards = cards.map((c) => c._id === card._id ? newCard : c);
         setCards(newCards);
@@ -131,7 +134,7 @@ export default function App() {
   function handleCardDelete(card) {
     setIsLoading(true);
     //send a request to API and get new cards array
-    api.deleteCard(card._id)
+    api.deleteCard(card._id, token)
       .then((newCard) => {
         setCards((state) => state.filter((c) => c._id === card._id ? '' : newCard));
         closeAllPopups();
@@ -209,7 +212,7 @@ export default function App() {
   useEffect(() => {
     if (isLoggedIn) {
       // вызываем получение данных
-      Promise.all([api.getUserInfo(), api.getCards()])
+      Promise.all([api.getUserInfo(token), api.getCards(token)])
         .then(resData => {
           const [userData, cardList] = resData;
           setCurrentUser(userData.data);
@@ -219,7 +222,7 @@ export default function App() {
           console.log(err);
         })
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, token]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -76,5 +76,5 @@ export class Auth {
 }
 
 export const auth = new Auth({
-    baseURL: 'http://localhost:3001',
+    baseURL: 'https://api.sergeyladorski.nomoredomains.xyz',
 })
