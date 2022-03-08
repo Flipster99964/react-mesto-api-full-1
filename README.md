@@ -61,4 +61,4 @@
 
 # Как найти
 Публичный IP-адрес [84.201.132.131](84.201.132.131) сервера и домен [https://sergeyladorski.nomoredomains.work](https://sergeyladorski.nomoredomains.work) , по которому к нему можно обратиться.  
-Больше моих проектов на [GitHub](https://github.com/sergeyladorski)).
+Больше моих проектов на [GitHub](https://github.com/sergeyladorski).
