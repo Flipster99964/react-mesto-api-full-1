@@ -4,8 +4,8 @@
 
 [![Mesto](https://github.com/sergeyladorski/react-mesto-auth/blob/main/public/logo512.png)](https://sergeyladorski.github.io/react-mesto-auth/)
 
-Приложение с авторизацией и регистрацией пользователя.
-Учебный проект от Яндекс.Практикум.
+Приложение с авторизацией и регистрацией пользователя.  
+Учебный проект от Яндекс.Практикум.  
 Профессия Веб-разработчик
 
 # Как найти
