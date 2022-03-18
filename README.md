@@ -5,6 +5,7 @@
 [![Mesto](https://github.com/sergeyladorski/react-mesto-auth/blob/main/public/logo512.png)](https://sergeyladorski.github.io/react-mesto-auth/)
 
 Приложение с авторизацией и регистрацией пользователя.  
+Frontend и backend приложения, сервер проекта размещен на платформе `Яндекс.Облако`.  
 Учебный проект от Яндекс.Практикум.  
 Профессия Веб-разработчик
 
