@@ -5,15 +5,11 @@
 [![Mesto](https://github.com/sergeyladorski/react-mesto-auth/blob/main/public/logo512.png)](https://sergeyladorski.github.io/react-mesto-auth/)
 
 Приложение с авторизацией и регистрацией пользователя.
-
-# Как найти
-Публичный IP-адрес [84.201.132.131](84.201.132.131) сервера и домен [https://sergeyladorski.nomoredomains.work](https://sergeyladorski.nomoredomains.work), по которому к нему можно обратиться.  
-
 Учебный проект от Яндекс.Практикум.
 Профессия Веб-разработчик
 
-- Основы бэкенда для фронтенд-разработчиков
-- Подготовка и деплой проекта
+# Как найти
+Публичный IP-адрес [84.201.132.131](84.201.132.131) сервера и домен [https://sergeyladorski.nomoredomains.work](https://sergeyladorski.nomoredomains.work), по которому к нему можно обратиться.  
 
 
 ## Features
